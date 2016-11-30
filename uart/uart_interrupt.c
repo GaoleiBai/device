@@ -1,4 +1,9 @@
-nt main(void)
+串口编程可以采用轮询方式，select方式，中断方式（采用信号机制，然后进行信号捕捉）
+
+
+
+中断方式进行信号捕捉处理
+int main(void)
 {
   int fd,res,i;
   struct sigaction saio; /*definition of signal axtion */
