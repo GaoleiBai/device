@@ -1,6 +1,8 @@
-# Makefile
-#
 
+
+
+# Makefile
+#这种写法是IIC的编译，修改了一部分内核的代码而不是单纯的调用库
 CROSS_COMPILE =arm-unknown-linux-gnueabi-
 
 CC = $(CROSS_COMPILE)gcc
