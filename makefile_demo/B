@@ -1,0 +1,23 @@
+ROOTFS_DIR = /opt/rootfs
+CROSS_COMPILE=arm-none-linux-gnueabi-
+APP_NAME = key_input_test
+KO_NAME = key_input_dev
+KO_NAME_1 = key_input_drv
+
+ifeq ($(KERNELRELEASE), )
+KERNEL_DIR =/home/farsight/linux_system/kernel/linux-3.0.8 
+CUR_DIR = $(shell pwd)
+all :
+	make -C $(KERNEL_DIR) M=$(CUR_DIR) modules
+	$(CROSS_COMPILE)gcc -g -Wall $(APP_NAME).c -o $(APP_NAME)
+clean :
+	make -C $(KERNEL_DIR) M=$(CUR_DIR) clean
+	rm -rf $(APP_NAME)
+
+install:
+	cp -raf *.ko $(APP_NAME)  $(ROOTFS_DIR)/drv_module
+	
+else
+obj-m = $(KO_NAME).o
+obj-m += $(KO_NAME_1).o
+endif
